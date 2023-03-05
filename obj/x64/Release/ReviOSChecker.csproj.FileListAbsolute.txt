@@ -1,6 +1,0 @@
-C:\Users\gabry\Desktop\ReviOSChecker\ReviOSChecker\bin\x64\Release\ReviOSChecker.exe.config
-C:\Users\gabry\Desktop\ReviOSChecker\ReviOSChecker\bin\x64\Release\ReviOSChecker.exe
-C:\Users\gabry\Desktop\ReviOSChecker\ReviOSChecker\obj\x64\Release\ReviOSChecker.csproj.AssemblyReference.cache
-C:\Users\gabry\Desktop\ReviOSChecker\ReviOSChecker\obj\x64\Release\ReviOSChecker.csproj.SuggestedBindingRedirects.cache
-C:\Users\gabry\Desktop\ReviOSChecker\ReviOSChecker\obj\x64\Release\ReviOSChecker.csproj.CoreCompileInputs.cache
-C:\Users\gabry\Desktop\ReviOSChecker\ReviOSChecker\obj\x64\Release\ReviOSChecker.exe
