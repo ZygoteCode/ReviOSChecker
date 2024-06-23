@@ -4,21 +4,49 @@ using System.IO;
 
 public class Program
 {
+    private static RegistryKey systemSupportKey;
+
+    private static void SetSystemSupportKey()
+    {
+        try
+        {
+            systemSupportKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\OEMInformation");
+        }
+        catch
+        {
+
+        }
+    }
+
+    private static string GetValueFromSystemSupportKey(string key)
+    {
+        try
+        {
+            return (string)systemSupportKey.GetValue(key);
+        }
+        catch
+        {
+
+        }
+
+        return "";
+    }
+
     public static void Main()
     {
+        SetSystemSupportKey();
+
         Console.Title = "ReviOSChecker";
         Console.ForegroundColor = ConsoleColor.White;
 
         string computerName = Environment.MachineName;
         bool revisionToolExists = Directory.Exists(Path.GetPathRoot(Environment.SystemDirectory) + "Program Files (x86)\\Revision Tool");
        
-        RegistryKey systemSupportKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\OEMInformation");
-
-        string manufacturer = (string)systemSupportKey.GetValue("Manufacturer");
-        string model = (string)systemSupportKey.GetValue("Model");
-        string supportAppUrl = (string)systemSupportKey.GetValue("SupportAppURL");
-        string supportProvider = (string)systemSupportKey.GetValue("SupportProvider");
-        string supportURL = (string)systemSupportKey.GetValue("SupportURL");
+        string manufacturer = GetValueFromSystemSupportKey("Manufacturer");
+        string model = GetValueFromSystemSupportKey("Model");
+        string supportAppUrl = GetValueFromSystemSupportKey("SupportAppURL");
+        string supportProvider = GetValueFromSystemSupportKey("SupportProvider");
+        string supportURL = GetValueFromSystemSupportKey("SupportURL");
 
         if (computerName.ToLower().Trim().Contains("revision") ||
             manufacturer.ToLower().Trim().Contains("revision") ||
@@ -26,6 +54,7 @@ public class Program
             supportAppUrl.ToLower().Trim().Contains("revision") ||
             supportProvider.ToLower().Trim().Contains("revision") ||
             supportURL.ToLower().Trim().Contains("revision") ||
+            supportURL.ToLower().Trim().Contains("discord.gg/962y4pu") ||
             revisionToolExists)
         {
             Console.Write("[");
@@ -90,7 +119,7 @@ public class Program
             NotPassed("Support Provider Check", supportProvider);
         }
 
-        if (supportURL.ToLower().Trim().Contains("revision"))
+        if (supportURL.ToLower().Trim().Contains("revision") || supportURL.ToLower().Contains("discord.gg/962y4pu"))
         {
             Passed("Support URL Check", supportURL);
         }
